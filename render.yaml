@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: project1
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    branch: main
+    autoDeploy: true
+    
