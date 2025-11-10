@@ -107,15 +107,7 @@ app.post("/verify-otp", (req, res) => {
       message: "Please request for OTP again",
     });
   }
-
-  console.log(data);
-  if (Date.now() > data.time) {
-    delete otps[email];
-    return res.json({ status: "fail", message: "Time out" });
-  }
-  if (String(data.otp) === String(otp)) {
-    delete otps[email];
-    req.session.varified = true;
+  if (data.otp === parseInt(otp) && data.time > Date.now()) {
     console.log("OTP verified successfully");
     res.json({ status: "succuss", message: "OTP verified successfully" });
   } else {
